@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Retention and Deletion Policy — Spending Watchdog (Infraxeon)</title>
+<style>
+  :root { --ink:#16181d; --muted:#5b6069; --rule:#d8dade; --band:#f5f6f7; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 40px 24px 80px; background: #fff; color: var(--ink);
+    font: 14.5px/1.6 "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; }
+  .doc-head { border-bottom: 2px solid var(--ink); padding-bottom: 16px; margin-bottom: 28px; }
+  .org { font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+  h1 { font-size: 24px; margin: 0 0 12px; letter-spacing: -0.3px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 28px; font-size: 12.5px; color: var(--muted); }
+  .meta b { color: var(--ink); font-weight: 600; }
+  h2 { font-size: 15px; margin: 28px 0 8px; text-transform: uppercase; letter-spacing: 0.7px; }
+  h2 .n { color: var(--muted); margin-right: 8px; }
+  p, li { margin: 8px 0; }
+  ul { padding-left: 20px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13.5px; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--rule); }
+  th { background: var(--band); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .note { background: var(--band); border-left: 3px solid var(--ink); padding: 12px 16px; margin: 16px 0; }
+  .note p { margin: 0; }
+  footer { margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); }
+  @media print {
+    body { padding: 0; font-size: 11pt; }
+    h2 { page-break-after: avoid; }
+    table, .note { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="doc-head">
+    <p class="org">Infraxeon</p>
+    <h1>Data Retention and Deletion Policy</h1>
+    <div class="meta">
+      <span><b>Application:</b> Spending Watchdog</span>
+      <span><b>Version:</b> 1.0</span>
+      <span><b>Effective:</b> 2 September 2026</span>
+      <span><b>Next review:</b> 2 September 2027</span>
+      <span><b>Owner:</b> Founder, Infraxeon</span>
+    </div>
+  </div>
+
+  <h2><span class="n">1</span>Purpose and scope</h2>
+  <p>This policy defines how long Spending Watchdog retains personal and
+  financial data, the circumstances under which that data is deleted, and the
+  technical controls that enforce those outcomes. It covers all consumer data
+  processed by the application, including data received from the Plaid API,
+  data entered by users, and account and authentication records.</p>
+  <p>Infraxeon operates the application. The founder is accountable for this
+  policy, for its enforcement, and for its periodic review.</p>
+
+  <h2><span class="n">2</span>Principles</h2>
+  <ul>
+    <li><strong>Purpose limitation.</strong> Data is collected and retained only to provide the service the user asked for: categorized spending, subscription detection, budgeting, and net-worth tracking.</li>
+    <li><strong>Minimization.</strong> No banking credentials are ever received or stored. No cardholder data, government identifiers, or payroll data are processed.</li>
+    <li><strong>No secondary use.</strong> Consumer data is not sold, shared with advertisers or data brokers, or used for profiling or advertising.</li>
+    <li><strong>Deletion on request.</strong> Users may terminate processing and have their data erased at any time.</li>
+  </ul>
+
+  <h2><span class="n">3</span>Retention schedule</h2>
+  <table>
+    <thead>
+      <tr><th style="width:31%">Data category</th><th style="width:29%">Retention period</th><th>Deletion trigger</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Plaid access tokens (encrypted)</td>
+        <td>Life of the bank connection</td>
+        <td>Unlinking the institution, or account deletion — the token is revoked at Plaid via <code>/item/remove</code> and the stored ciphertext is deleted</td>
+      </tr>
+      <tr>
+        <td>Transactions, accounts, balances, recurring streams</td>
+        <td>Life of the user account</td>
+        <td>Account deletion; individual records are also removed when Plaid reports them as removed</td>
+      </tr>
+      <tr>
+        <td>User-entered data (manual entries, categories, corrections, budget, alert preferences)</td>
+        <td>Life of the user account</td>
+        <td>Account deletion, or user action within the application</td>
+      </tr>
+      <tr>
+        <td>Authentication records (email, password credential, MFA secret)</td>
+        <td>Life of the user account</td>
+        <td>Account deletion</td>
+      </tr>
+      <tr>
+        <td>Device push tokens</td>
+        <td>Life of the user account</td>
+        <td>Account deletion, or the user disabling notifications</td>
+      </tr>
+      <tr>
+        <td>Operational logs (webhook receipts, alert send records, daily balance snapshots)</td>
+        <td>Life of the user account</td>
+        <td>Account deletion (records are keyed to the user and cascade)</td>
+      </tr>
+      <tr>
+        <td>Encrypted database backups</td>
+        <td>Rolling window maintained by the infrastructure provider (currently up to 7 days)</td>
+        <td>Automatic expiry — deleted records age out of backups within the rolling window</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2><span class="n">4</span>Deletion mechanisms and technical enforcement</h2>
+  <ul>
+    <li><strong>Referential cascade.</strong> Every table containing consumer data carries a foreign key to the owning user account with <code>ON DELETE CASCADE</code>. Deleting the account deletes all dependent financial records in a single transaction; no orphaned data remains.</li>
+    <li><strong>Third-party revocation.</strong> Unlinking an institution calls Plaid's <code>/item/remove</code> endpoint, terminating Plaid's authorization to access the account, before local credentials are destroyed.</li>
+    <li><strong>Access isolation.</strong> Row-level security restricts every query to the authenticated user's own records, so deletion requests cannot affect, and cannot omit, another user's data.</li>
+    <li><strong>Credential destruction.</strong> Access tokens are stored only as AES-256-GCM ciphertext; deletion removes the ciphertext, and the encryption key is held separately in a secrets manager.</li>
+  </ul>
+
+  <h2><span class="n">5</span>User rights and requests</h2>
+  <p>Users may disconnect any linked financial institution at any time from
+  within the application, which immediately revokes third-party access. Users
+  may request erasure of their account and all associated data by contacting
+  <a href="mailto:hello@infraxeon.com">hello@infraxeon.com</a>. Requests are
+  actioned within 30 days of verification of the requester's identity, and
+  confirmation is provided once completed. Users may also request access to,
+  correction of, or export of their personal data through the same channel.</p>
+
+  <h2><span class="n">6</span>Processors</h2>
+  <p>Data is processed by a limited set of providers acting on Infraxeon's
+  behalf: Plaid (bank connectivity and transaction data), Supabase on Amazon
+  Web Services (authentication, database, server functions), and Expo (push
+  notification delivery). Deletion performed in the application propagates to
+  the primary data store; Plaid access is revoked through the API as described
+  above.</p>
+
+  <h2><span class="n">7</span>Legal compliance</h2>
+  <p>This policy is written to support obligations under applicable consumer
+  privacy laws, including rights of access, correction, deletion, and
+  portability, and the principle that personal data is not retained longer than
+  necessary for the purpose for which it was collected. Where a specific legal
+  obligation requires longer retention of a record, that record will be
+  retained only for the period required and then deleted.</p>
+
+  <h2><span class="n">8</span>Review</h2>
+  <p>This policy is reviewed at least annually by the policy owner, and
+  additionally whenever the application begins processing a new category of
+  data, adds or replaces a processor, or materially changes how data is stored.
+  Each review is recorded in the version history below.</p>
+
+  <div class="note">
+    <p><strong>Version history.</strong> v1.0 — 2 September 2026 — initial
+    issue. Next scheduled review: 2 September 2027.</p>
+  </div>
+
+  <footer>
+    Infraxeon · Spending Watchdog · Data Retention and Deletion Policy v1.0 ·
+    hello@infraxeon.com · Published alongside the privacy policy at
+    jbaonline.github.io/spending-watchdog-site/privacy/
+  </footer>
+</main>
+</body>
+</html>
