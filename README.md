@@ -1,6 +1,6 @@
 # spending-watchdog-site
 
-Public web presence for **Spending Watchdog**, a personal finance app operated
+Public web presence for **Valsiva**, a personal finance app operated
 by Infraxeon.
 
 Currently hosts the legal pages required by Plaid and the App Store while the
