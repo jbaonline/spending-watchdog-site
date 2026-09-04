@@ -3,33 +3,163 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Spending Watchdog</title>
-<meta name="description" content="Automatic spending visibility and a watchdog for forgotten subscriptions.">
+<title>Spending Watchdog — automatic spending visibility</title>
+<meta name="description" content="Spending Watchdog connects securely to your bank, categorizes your spending automatically, and warns you before forgotten subscriptions renew. Operated by Infraxeon.">
 <style>
   :root {
-    color-scheme: light dark;
-    --bg: #ffffff; --ink: #16181d; --muted: #5b6069; --accent: #128a60;
+    color-scheme: dark;
+    --bg: #000000;
+    --card: #1C1C1E;
+    --line: rgba(58,58,60,0.5);
+    --ink: #FFFFFF;
+    --ink-2: #AEAEB2;
+    --ink-3: #8E8E93;
+    --accent: #2fc493;
+    --warn: #fab219;
   }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #0d0d0e; --ink: #f2f2f4; --muted: #a4a8b0; --accent: #2fc493; }
-  }
+  * { box-sizing: border-box; }
   body {
-    margin: 0; min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--bg); color: var(--ink);
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
     font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
-    padding: 24px; text-align: center;
+    -webkit-font-smoothing: antialiased;
   }
-  h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.4px; }
-  p { color: var(--muted); margin: 0 0 20px; }
-  a { color: var(--accent); }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 72px 0 40px; }
+  .brand {
+    font-size: 13px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--ink-3); margin: 0 0 20px;
+  }
+  h1 {
+    font-size: clamp(32px, 6vw, 46px); line-height: 1.1; margin: 0 0 16px;
+    letter-spacing: -1px; font-weight: 700;
+  }
+  .lede { font-size: 18px; color: var(--ink-2); margin: 0 0 28px; max-width: 62ch; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; padding: 11px 18px; border-radius: 12px;
+    border: 1px solid var(--line); color: var(--ink); text-decoration: none;
+    font-size: 14px; font-weight: 600; background: var(--card);
+  }
+  .btn.ghost { background: transparent; color: var(--ink-2); }
+  section { padding: 40px 0; border-top: 1px solid var(--line); }
+  h2 {
+    font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--ink-3); margin: 0 0 24px; font-weight: 600;
+  }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 22px;
+  }
+  .card h3 { font-size: 16px; margin: 0 0 8px; font-weight: 600; }
+  .card p { margin: 0; color: var(--ink-2); font-size: 15px; }
+  ul.checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  ul.checks li { color: var(--ink-2); padding-left: 26px; position: relative; }
+  ul.checks li::before {
+    content: ""; position: absolute; left: 0; top: 8px;
+    width: 8px; height: 8px; border-radius: 3px; background: var(--accent);
+  }
+  ul.checks strong { color: var(--ink); font-weight: 600; }
+  footer {
+    padding: 40px 0 72px; border-top: 1px solid var(--line);
+    color: var(--ink-3); font-size: 14px;
+  }
+  footer a { color: var(--ink-2); }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 16px; }
 </style>
 </head>
 <body>
-  <main>
-    <h1>Spending Watchdog</h1>
-    <p>Automatic spending visibility, and a watchdog for forgotten subscriptions.<br>Site coming soon.</p>
-    <p><a href="./privacy/">Privacy Policy</a> · <a href="mailto:hello@infraxeon.com">Support</a></p>
-  </main>
+<div class="wrap">
+
+  <header>
+    <p class="brand">Spending Watchdog · by Infraxeon</p>
+    <h1>Know where your money went, without typing a thing.</h1>
+    <p class="lede">
+      Spending Watchdog connects securely to your bank, sorts your transactions
+      automatically, and tells you before a forgotten subscription bills you
+      again. No receipts to photograph, no expenses to log by hand.
+    </p>
+    <div class="actions">
+      <a class="btn" href="./privacy/">Privacy Policy</a>
+      <a class="btn ghost" href="mailto:hello@infraxeon.com">Contact support</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>What it does</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Automatic categorization</h3>
+        <p>Transactions arrive already sorted into food, entertainment,
+        subscriptions and more. Correct one and every charge from that
+        merchant follows, past and future.</p>
+      </div>
+      <div class="card">
+        <h3>Subscription watchdog</h3>
+        <p>Finds recurring charges hiding in your statement, shows what they
+        cost you monthly, and sends a notification days before each renewal.</p>
+      </div>
+      <div class="card">
+        <h3>Budgets that stay quiet</h3>
+        <p>One monthly budget, or a limit per category. The app only speaks up
+        when you are drifting past it.</p>
+      </div>
+      <div class="card">
+        <h3>The whole picture</h3>
+        <p>Balances, net worth over time, month-to-month trends, and cash you
+        spend outside the bank — in one place.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How your data is handled</h2>
+    <ul class="checks">
+      <li><strong>We never see your bank login.</strong> Credentials are entered
+        directly with your bank through Plaid; they are never sent to, or stored
+        by, this app.</li>
+      <li><strong>Access tokens are encrypted at rest</strong> (AES-256-GCM) and
+        readable only by server-side functions — never by the app on your
+        device.</li>
+      <li><strong>Your records are isolated.</strong> Row-level security means an
+        authenticated session can only ever reach its own data.</li>
+      <li><strong>Read-only.</strong> The app retrieves transactions and
+        balances. It cannot move money.</li>
+      <li><strong>Nothing is sold or shared.</strong> No advertisers, no data
+        brokers, no use of your financial data for profiling.</li>
+      <li><strong>You can leave cleanly.</strong> Disconnect a bank at any time —
+        which revokes access at Plaid — or delete your account and all its data
+        from inside the app.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Availability</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Platforms</h3>
+        <p>iPhone, with a companion web dashboard. Optional Face ID lock and
+        two-factor authentication.</p>
+      </div>
+      <div class="card">
+        <h3>Status</h3>
+        <p>In active development and private testing ahead of an App Store
+        release. Bank connectivity is provided by Plaid.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-links">
+      <a href="./privacy/">Privacy Policy</a>
+      <a href="./policies/data-retention-and-deletion.html">Data Retention &amp; Deletion</a>
+      <a href="mailto:hello@infraxeon.com">hello@infraxeon.com</a>
+    </div>
+    Spending Watchdog is operated by Infraxeon. Product name is provisional.
+  </footer>
+
+</div>
 </body>
 </html>
