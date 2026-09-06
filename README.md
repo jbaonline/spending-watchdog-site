@@ -1,6 +1,6 @@
 # spending-watchdog-site
 
-**Retired.** Valsiva's public site is now https://valsiva.com — repository
+**Retired.** Valsiva's public site is now https://valsiva.com - repository
 `jbaonline/valsiva-site`, deployed as a Cloudflare Worker.
 
 This repository exists only to keep its old URLs resolving. They were
@@ -8,7 +8,7 @@ published to Plaid as supporting documents for the production application, and
 a URL in someone else's records outlives the record; it has to keep working
 whether or not the dashboard entry is ever updated.
 
-Every page here is a redirect stub — canonical, `noindex, follow`, meta
+Every page here is a redirect stub - canonical, `noindex, follow`, meta
 refresh, `location.replace`, and a visible link, so it survives a browser with
 no JavaScript and a reader with neither:
 
