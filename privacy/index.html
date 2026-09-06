@@ -3,162 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — Valsiva</title>
-<meta name="description" content="How Valsiva collects, uses, and protects your financial data.">
+<title>Moved — Valsiva Privacy Policy</title>
+
+<!--
+  This URL is the one Plaid holds on file, so it has to keep resolving even
+  after the dashboard entry is updated — old links in old records outlive the
+  records themselves.
+
+  GitHub Pages serves static files and cannot issue a 301, so this is done
+  three ways over: the canonical tells search engines which copy is real, the
+  meta refresh moves a browser with no JavaScript, and the script moves one
+  with JavaScript a beat sooner. The visible link is the fourth: whatever
+  fails, a person still gets there by reading the page.
+
+  replace() rather than assign() so the back button returns to wherever the
+  visitor came from instead of bouncing them forward again.
+-->
+<link rel="canonical" href="https://valsiva.com/privacy/">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="refresh" content="0; url=https://valsiva.com/privacy/">
+<script>location.replace('https://valsiva.com/privacy/');</script>
+
 <style>
-  :root {
-    color-scheme: light dark;
-    --bg: #ffffff;
-    --card: #f6f6f4;
-    --ink: #16181d;
-    --muted: #5b6069;
-    --rule: rgba(0,0,0,0.10);
-    --accent: #128a60;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0d0d0e;
-      --card: #1c1c1e;
-      --ink: #f2f2f4;
-      --muted: #a4a8b0;
-      --rule: rgba(255,255,255,0.12);
-      --accent: #2fc493;
-    }
-  }
-  * { box-sizing: border-box; }
   body {
-    margin: 0;
-    padding: 48px 20px 96px;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
-    -webkit-text-size-adjust: 100%;
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: #111313; color: #F7F9F7; text-align: center; padding: 24px;
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
   }
-  main { max-width: 720px; margin: 0 auto; }
-  header { border-bottom: 1px solid var(--rule); padding-bottom: 24px; margin-bottom: 32px; }
-  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.4px; }
-  h2 { font-size: 19px; margin: 36px 0 10px; letter-spacing: -0.2px; }
-  h3 { font-size: 16px; margin: 24px 0 6px; }
-  .muted { color: var(--muted); font-size: 14px; margin: 0; }
-  ul { padding-left: 20px; }
-  li { margin: 6px 0; }
-  a { color: var(--accent); }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: 14px;
-    padding: 18px 20px;
-    margin: 24px 0;
-  }
-  .card p { margin: 0; }
-  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); }
+  h1 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  p { color: #AEB4B0; margin: 0 0 20px; }
+  a { color: #36D99A; }
 </style>
-<link rel="icon" type="image/png" href="../favicon.png">
 </head>
 <body>
-<main>
-  <header>
-    <h1>Privacy Policy</h1>
-    <p class="muted">Valsiva · Last updated 2 September 2026</p>
-  </header>
-
-  <p>Valsiva (“the app”) helps you understand your spending by
-  securely connecting to your financial accounts and automatically categorizing
-  your transactions. This policy explains what data the app collects, how it is
-  used and protected, and the choices you have.</p>
-
-  <p>The app is operated by <strong>Infraxeon</strong> (“we”, “us”). Questions
-  about this policy or your data:
-  <a href="mailto:hello@infraxeon.com">hello@infraxeon.com</a>.</p>
-
-  <h2>Information we collect</h2>
-
-  <h3>Account information</h3>
-  <ul>
-    <li>Your email address and an encrypted password credential, used solely to authenticate you.</li>
-    <li>If you enable two-factor authentication, a secret used to verify your authenticator codes.</li>
-    <li>A device push token, if you allow notifications, so we can send you renewal alerts.</li>
-  </ul>
-
-  <h3>Financial information (via Plaid)</h3>
-  <p>When you choose to link a bank account, we use
-  <a href="https://plaid.com" target="_blank" rel="noopener">Plaid Inc.</a> to
-  establish that connection. Plaid collects your banking credentials directly
-  through its own secure interface — <strong>we never see, receive, or store
-  your bank username or password.</strong> Plaid’s handling of your information
-  is governed by the
-  <a href="https://plaid.com/legal/#end-user-privacy-policy" target="_blank" rel="noopener">Plaid End User Privacy Policy</a>.</p>
-  <p>Through Plaid, we receive and store:</p>
-  <ul>
-    <li>Account details: institution name, account name, type, mask (last digits), and current balance.</li>
-    <li>Transaction history: date, amount, merchant or description, currency, pending status, and category.</li>
-    <li>Recurring transaction streams, used to detect subscriptions and predict renewal dates.</li>
-  </ul>
-
-  <h3>Information you enter</h3>
-  <ul>
-    <li>Manual cash entries, custom categories, category corrections, a monthly budget, and alert preferences.</li>
-  </ul>
-
-  <h2>How we use your information</h2>
-  <ul>
-    <li>To display your spending, income, budget progress, subscriptions, and net worth inside the app.</li>
-    <li>To categorize transactions automatically and to apply the corrections you make.</li>
-    <li>To detect recurring charges and notify you before a subscription renews.</li>
-    <li>To authenticate you and keep your account secure.</li>
-  </ul>
-  <div class="card">
-    <p><strong>We do not sell your personal or financial information. We do not
-    share it with advertisers, data brokers, or marketers, and we do not use
-    your financial data for advertising or profiling.</strong></p>
-  </div>
-
-  <h2>How your data is protected</h2>
-  <ul>
-    <li>All traffic between the app and our servers, and between our servers and Plaid, is encrypted in transit using TLS.</li>
-    <li>Data is stored in a managed PostgreSQL database (Supabase, hosted on Amazon Web Services) that is encrypted at rest, with encrypted backups.</li>
-    <li>Plaid access tokens receive additional application-layer encryption (AES-256-GCM) before storage, with keys held in a secrets manager and available only to server-side functions.</li>
-    <li>Every data table enforces row-level security, so your records are accessible only to your authenticated account.</li>
-    <li>Bank connections are handled exclusively server-side; the app on your device never holds a bank access token.</li>
-    <li>Incoming webhooks from Plaid are cryptographically verified before they are processed.</li>
-    <li>Optional two-factor authentication is available and recommended.</li>
-  </ul>
-
-  <h2>Service providers</h2>
-  <p>We rely on a small number of processors, each acting on our behalf:</p>
-  <ul>
-    <li><strong>Plaid</strong> — bank connectivity and transaction data.</li>
-    <li><strong>Supabase</strong> (on Amazon Web Services) — authentication, database, and server functions.</li>
-    <li><strong>Expo</strong> — delivery of push notifications.</li>
-  </ul>
-
-  <h2>Data retention and deletion</h2>
-  <ul>
-    <li>Your data is retained while your account is active.</li>
-    <li>Unlinking a bank in the app revokes our access at Plaid and deletes the stored access token.</li>
-    <li>You may request deletion of your account and all associated data at any time by emailing
-      <a href="mailto:hello@infraxeon.com">hello@infraxeon.com</a>. Deleting your account permanently removes your linked accounts, transactions, categories, and preferences.</li>
-  </ul>
-
-  <h2>Your rights</h2>
-  <p>Depending on where you live, you may have the right to access, correct,
-  export, or delete your personal information, and to withdraw consent for bank
-  connections at any time. To exercise any of these rights, contact us at the
-  address above; you can also disconnect any linked institution directly in the
-  app at any time.</p>
-
-  <h2>Children</h2>
-  <p>The app is not directed to children under 13, and we do not knowingly
-  collect information from them.</p>
-
-  <h2>Changes to this policy</h2>
-  <p>If this policy changes materially, we will update the date at the top of
-  this page and, where appropriate, notify you in the app.</p>
-
-  <footer>
-    <p class="muted">Valsiva is operated by Infraxeon ·
-      <a href="mailto:hello@infraxeon.com">hello@infraxeon.com</a></p>
-  </footer>
-</main>
+  <main>
+    <h1>The privacy policy has moved</h1>
+    <p>It now lives on Valsiva’s own site.</p>
+    <p><a href="https://valsiva.com/privacy/">valsiva.com/privacy/</a></p>
+  </main>
 </body>
 </html>

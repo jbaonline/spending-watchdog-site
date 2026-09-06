@@ -3,175 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Valsiva — spot every leak</title>
-<meta name="description" content="Valsiva connects securely to your bank, categorizes your spending automatically, and warns you before forgotten subscriptions renew. Operated by Infraxeon.">
+<title>Moved — Valsiva</title>
+<link rel="icon" href="./favicon.png">
+
+<!--
+  This page was the whole public presence for Valsiva while the real site was
+  being built. That site now exists at valsiva.com, and two hosts answering
+  for one brand is the thing worth avoiding — the canonical and the noindex
+  make sure only one of them competes for the name.
+-->
+<link rel="canonical" href="https://valsiva.com/">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="refresh" content="0; url=https://valsiva.com/">
+<script>location.replace('https://valsiva.com/');</script>
+
 <style>
-  :root {
-    color-scheme: dark;
-    --bg: #111313;
-    --card: #1A1E1C;
-    --line: rgba(247,249,247,0.12);
-    --ink: #F7F9F7;
-    --ink-2: #AEB4B0;
-    --ink-3: #8A928D;
-    --accent: #36D99A;
-    --warn: #fab219;
-  }
-  * { box-sizing: border-box; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: #111313; color: #F7F9F7; text-align: center; padding: 24px;
     font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
-    -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
-  header { padding: 72px 0 40px; }
-  .brand {
-    font-size: 13px; letter-spacing: 1.6px; text-transform: uppercase;
-    color: var(--ink-3); margin: 0 0 20px;
-  }
-  h1 {
-    font-size: clamp(32px, 6vw, 46px); line-height: 1.1; margin: 0 0 16px;
-    letter-spacing: -1px; font-weight: 700;
-  }
-  .lede { font-size: 18px; color: var(--ink-2); margin: 0 0 28px; max-width: 62ch; }
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-  .btn {
-    display: inline-block; padding: 11px 18px; border-radius: 12px;
-    border: 1px solid var(--line); color: var(--ink); text-decoration: none;
-    font-size: 14px; font-weight: 600; background: var(--card);
-  }
-  .btn.ghost { background: transparent; color: var(--ink-2); }
-  section { padding: 40px 0; border-top: 1px solid var(--line); }
-  h2 {
-    font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase;
-    color: var(--ink-3); margin: 0 0 24px; font-weight: 600;
-  }
-  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  .card {
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 16px; padding: 22px;
-  }
-  .card h3 { font-size: 16px; margin: 0 0 8px; font-weight: 600; }
-  .card p { margin: 0; color: var(--ink-2); font-size: 15px; }
-  ul.checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-  ul.checks li { color: var(--ink-2); padding-left: 26px; position: relative; }
-  ul.checks li::before {
-    content: ""; position: absolute; left: 0; top: 8px;
-    width: 8px; height: 8px; border-radius: 3px; background: var(--accent);
-  }
-  ul.checks strong { color: var(--ink); font-weight: 600; }
-  .claim {
-    margin: 24px 0 0; padding-top: 20px; border-top: 1px solid var(--line);
-    font-size: 17px; font-weight: 600; color: var(--ink);
-  }
-  footer {
-    padding: 40px 0 72px; border-top: 1px solid var(--line);
-    color: var(--ink-3); font-size: 14px;
-  }
-  footer a { color: var(--ink-2); }
-  .foot-links { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 16px; }
+  h1 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  p { color: #AEB4B0; margin: 0 0 20px; }
+  a { color: #36D99A; }
 </style>
-<link rel="icon" type="image/png" href="./favicon.png">
 </head>
 <body>
-<div class="wrap">
-
-  <header>
-    <p class="brand">Valsiva · by Infraxeon</p>
-    <h1>Spot every leak.</h1>
-    <p class="lede">
-      Valsiva connects securely to your bank, sorts your spending automatically,
-      and tells you before a forgotten subscription bills you again. No receipts
-      to photograph, no expenses to log by hand.
-    </p>
-    <div class="actions">
-      <a class="btn" href="./privacy/">Privacy Policy</a>
-      <a class="btn ghost" href="mailto:hello@infraxeon.com">Contact support</a>
-    </div>
-  </header>
-
-  <section>
-    <h2>What it does</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Automatic categorization</h3>
-        <p>Transactions arrive already sorted into food, entertainment,
-        subscriptions and more. Correct one and every charge from that
-        merchant follows, past and future.</p>
-      </div>
-      <div class="card">
-        <h3>Subscription watchdog</h3>
-        <p>Finds recurring charges hiding in your statement, shows what they
-        cost you monthly, and sends a notification days before each renewal.</p>
-      </div>
-      <div class="card">
-        <h3>Budgets that stay quiet</h3>
-        <p>One monthly budget, or a limit per category. The app only speaks up
-        when you are drifting past it.</p>
-      </div>
-      <div class="card">
-        <h3>The whole picture</h3>
-        <p>Balances, net worth over time, month-to-month trends, and cash you
-        spend outside the bank — in one place.</p>
-      </div>
-      <div class="card">
-        <h3>Share with your partner</h3>
-        <p>Invite the person you share money with. They sign in with their own
-        account and see the same picture — without being able to touch your
-        bank connections.</p>
-      </div>
-    </div>
-    <p class="claim">One subscription for your household. Not one each.</p>
-  </section>
-
-  <section>
-    <h2>How your data is handled</h2>
-    <ul class="checks">
-      <li><strong>We never see your bank login.</strong> Credentials are entered
-        directly with your bank through Plaid; they are never sent to, or stored
-        by, this app.</li>
-      <li><strong>Access tokens are encrypted at rest</strong> (AES-256-GCM) and
-        readable only by server-side functions — never by the app on your
-        device.</li>
-      <li><strong>Your records are isolated.</strong> Row-level security means an
-        authenticated session can only ever reach its own data.</li>
-      <li><strong>Read-only.</strong> The app retrieves transactions and
-        balances. It cannot move money.</li>
-      <li><strong>Nothing is sold or shared.</strong> No advertisers, no data
-        brokers, no use of your financial data for profiling.</li>
-      <li><strong>You can leave cleanly.</strong> Disconnect a bank at any time —
-        which revokes access at Plaid — or delete your account and all its data
-        from inside the app.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Availability</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Platforms</h3>
-        <p>iPhone, with a companion web dashboard. Optional Face ID lock and
-        two-factor authentication.</p>
-      </div>
-      <div class="card">
-        <h3>Status</h3>
-        <p>In active development and private testing ahead of an App Store
-        release. Bank connectivity is provided by Plaid.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="foot-links">
-      <a href="./privacy/">Privacy Policy</a>
-      <a href="./policies/data-retention-and-deletion.html">Data Retention &amp; Deletion</a>
-      <a href="mailto:hello@infraxeon.com">hello@infraxeon.com</a>
-    </div>
-    Valsiva is operated by Infraxeon.
-  </footer>
-
-</div>
+  <main>
+    <h1>Valsiva has a new home</h1>
+    <p>This site has moved.</p>
+    <p><a href="https://valsiva.com/">valsiva.com</a></p>
+  </main>
 </body>
 </html>
